@@ -52,6 +52,13 @@ class GamesController < ApplicationController
     end
   end
 
+  #HTTP request?
+  def join
+     @game = Game.find(params[:id])
+     current_user.attended_events << @game
+     redirect_to @game
+  end
+
   # DELETE /games/1
   # DELETE /games/1.json
   def destroy

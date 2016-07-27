@@ -6,6 +6,11 @@
 </p>
 
 <p>
+  <strong>Creator:</strong>
+  <%= @game.user.name %>
+</p>
+
+<p>
   <strong>Start:</strong>
   <%= @game.start %>
 </p>
@@ -15,10 +20,18 @@
   <%= @game.end %>
 </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @game.user %>
-</p>
+<h2>Who's coming?</h2>
+
+<ul>
+	<% @game.attendees.each do |attendee| %>
+	    <li>
+      <%= gravatar_for attendee, size: 50 %>
+      <%= link_to attendee.name, attendee %>
+    </li>
+	<% end %>
+</ul>
+
+
 
 <%= link_to 'Edit', edit_game_path(@game) %> |
 <%= link_to 'Back', games_path %>

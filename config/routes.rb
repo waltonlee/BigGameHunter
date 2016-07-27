@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
-  resources :games
+  resources :games do
+    member do
+      post :join
+    end
+  end
+
   devise_for :users
+  resources :users, :only => [:show]
+
   get 'games/index'
 
   root to: 'games#index'
