@@ -25,6 +25,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'gravtastic'
 
+gem 'simple_form'
+
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
+
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 

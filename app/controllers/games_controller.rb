@@ -52,11 +52,18 @@ class GamesController < ApplicationController
     end
   end
 
-  #HTTP request?
+  #POST
   def join
      @game = Game.find(params[:id])
      current_user.attended_events << @game
      redirect_to @game
+  end
+
+  #DELETE?
+  def leave
+     @game = Game.find(params[:id])
+     current_user.attended_events.delete(@game)
+     redirect_to current_user
   end
 
   # DELETE /games/1

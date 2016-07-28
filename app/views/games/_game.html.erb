@@ -1,0 +1,11 @@
+<li id="game-<%= game.id %>">
+  <%= link_to gravatar_for(game.user, size: 50), game.user %>
+  <span class="user"><%= link_to game.user.name, game.user %></span>
+  <span class="name"><%= game.name %></span>
+  <span class="start time">
+    Start Time: <%= game.start.strftime("%m/%d %I:%M%p %Z") %>
+  </span>
+  <span class="end time">
+    End Time: <%= game.end.strftime("%m/%d %I:%M%p %Z") %>
+  </span>
+</li>

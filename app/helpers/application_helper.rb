@@ -8,4 +8,13 @@ module ApplicationHelper
     image_tag(gravatar_url, alt: user.name, class: "gravatar")
   end
 
+  def full_title(page_title = '')
+    base_title = "Big Game Hunter"
+    if page_title.empty?
+      base_title
+    else
+      page_title + " | " + base_title
+    end
+  end
+
 end

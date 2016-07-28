@@ -1,1 +1,35 @@
-<%= @user.name %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.name %>
+      </h1>
+    </section>
+  </aside>
+  <div class="col-md-8">
+  	<h3>Joined at: <%= @user.created_at %></h3></br>
+  	<h3>Games Following: Add code here</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <% if @user.games.any? %>
+      <h3>Games Owned (<%= @user.games.count %>)</h3>
+      <ol class="games">
+        <%= render @games %>
+      </ol>
+      <%= will_paginate @games %>
+    <% end %>
+  </div>
+  <div class="col-md-6">
+    <% if @user.attended_events.any? %>
+      <% @games = @user.attended_events.paginate(page: params[:page]) %>
+      <h3>Games Joined (<%= @user.attended_events.count %>)</h3>
+      <ol class="games">
+        <%= render @games %>
+      </ol>
+      <%= will_paginate @games %>
+    <% end %>
+  </div>
+</div>

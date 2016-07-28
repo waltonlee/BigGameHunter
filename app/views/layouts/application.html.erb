@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>BGH</title>
+    <title><%= full_title(yield(:title)) %></title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -16,8 +16,9 @@
         <%= link_to 'BigGameHunter', games_path , id: "logo", :class => 'navbar-link' %>
         <nav>
           <p class="navbar-text pull-right"> <!-- nav navbar-nav navbar-right -->
+          <%= link_to "Users", users_path %>
       		<% if user_signed_in? %>
-            <%= gravatar_for current_user, size: 25 %>
+            <%= gravatar_for current_user, size: 30 %>
       		  Logged in as <strong><%= link_to current_user.name, current_user , :class => 'navbar-link' %> </strong> |
       		  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
       		  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>

@@ -2,11 +2,12 @@ Rails.application.routes.draw do
   resources :games do
     member do
       post :join
+      delete :leave
     end
   end
 
   devise_for :users
-  resources :users, :only => [:show]
+  resources :users, :only => [:show, :index]
 
   get 'games/index'
 
