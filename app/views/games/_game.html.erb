@@ -1,5 +1,5 @@
 <li id="game-<%= game.id %>">
-  <%= link_to gravatar_for(game.user, size: 50), game.user %>
+  <%= image_tag(game.gametype.image, size: "50") %>
   <span class="user"><%= link_to game.user.name, game.user %></span>
   <span class="name"><%= game.name %></span>
   <span class="start time">

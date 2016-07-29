@@ -13,6 +13,16 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :gametype %><br>
+    <%= f.collection_check_boxes :gametype_ids, Gametype.all, :id, :name do |b| %>
+      <div class="collection-check-box">
+        <%= b.check_box %>
+        <%= b.label %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="field">
     <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
     <%= f.password_field :password, autocomplete: "off" %>
     <% if @minimum_password_length %>

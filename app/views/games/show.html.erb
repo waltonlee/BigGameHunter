@@ -1,12 +1,15 @@
 <p id="notice"><%= notice %></p>
-
+<div>
 <p>
+  <%= image_tag(@game.gametype.image, size: "100") %>
   <strong>Name:</strong>
   <%= @game.name %>
 </p>
+</div>
 
 <p>
   <strong>Creator:</strong>
+  <%= gravatar_for @game.user, size: 50 %>
   <%= @game.user.name %>
 </p>
 

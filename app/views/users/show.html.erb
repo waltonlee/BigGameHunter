@@ -9,7 +9,16 @@
   </aside>
   <div class="col-md-8">
   	<h3>Joined at: <%= @user.created_at %></h3></br>
-  	<h3>Games Following: Add code here</h3>
+  	<h3>Games Following:
+      <ul>
+        <% @user.gametypes.each do |gametype| %>
+            <li>
+            <%= link_to gametype.name, gametype %>
+          </li>
+        <% end %>
+      </ul>
+
+    </h3>
   </div>
 </div>
 <div class="row">

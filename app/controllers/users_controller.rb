@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 	before_action :set_user, only: [:show]
+	#params.require(:user).permit(:name, gametype_ids:[])
 
 	def index
 		@users = User.paginate(page: params[:page])

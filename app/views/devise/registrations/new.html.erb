@@ -14,6 +14,16 @@
   </div>
 
   <div class="field">
+    <%= f.label :gametype %><br>
+    <%= f.collection_check_boxes :gametype_ids, Gametype.all, :id, :name do |b| %>
+      <div class="collection-check-box">
+        <%= b.check_box %>
+        <%= b.label %>
+      </div>
+  <% end %>
+  </div>
+
+  <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
