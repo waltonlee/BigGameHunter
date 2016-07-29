@@ -7,7 +7,6 @@ class UsersController < ApplicationController
 
 	def show
 	    @games = @user.games.paginate(page: params[:page])
-	    @attending = @user.attended_events.paginate(page: params[:page])
 	end
 
 	private

@@ -18,6 +18,10 @@
         <%= f.text_field :name %>
       </div>
       <div class="field">
+        <%= f.label :gametype %><br>
+        <%= f.collection_select(:gametype_id, Gametype.all, :id, :name) %>
+      </div>
+      <div class="field">
         <%= f.label :start %><br>
         <%= f.datetime_select :start %>
       </div>
