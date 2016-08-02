@@ -29,6 +29,10 @@
         <%= f.label :end %><br>
         <%= f.datetime_select :end %>
       </div>
+      <div class="field">
+        <%= f.label :address %><br>
+        <%= f.gmap_coordinate_picker :api_key => 'AIzaSyDJbp32tSbN-En9Zb2eU43iGwPmqp2uYwc' %>
+      </div>
       <%= f.hidden_field :user_id %>
       <div class="actions">
         <%= f.submit %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160729063146) do
+ActiveRecord::Schema.define(version: 20160801013423) do
 
   create_table "games", force: :cascade do |t|
     t.string   "name"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 20160729063146) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "gametype_id"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "games", ["gametype_id"], name: "index_games_on_gametype_id"

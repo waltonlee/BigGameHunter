@@ -26,6 +26,7 @@ gem 'devise'
 gem 'gravtastic'
 
 gem 'simple_form'
+gem 'gmap_coordinates_picker'
 
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
