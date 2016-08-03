@@ -72,6 +72,7 @@ GEM
       activesupport (>= 4.1.0)
     gmap_coordinates_picker (0.1.0)
       rails (>= 3.1.0)
+    gmaps4rails (2.1.2)
     gravtastic (3.2.6)
     i18n (0.7.0)
     jbuilder (2.6.0)
@@ -172,6 +173,7 @@ GEM
       tzinfo (>= 1.0.0)
     uglifier (3.0.0)
       execjs (>= 0.3.0, < 3)
+    underscore-rails (1.8.3)
     warden (1.2.6)
       rack (>= 1.0)
     web-console (2.3.0)
@@ -193,6 +195,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   devise
   gmap_coordinates_picker
+  gmaps4rails
   gravtastic
   jbuilder (~> 2.0)
   jquery-rails
@@ -210,6 +213,7 @@ DEPENDENCIES
   turbolinks
   tzinfo-data
   uglifier (>= 1.3.0)
+  underscore-rails
   web-console (~> 2.0)
   will_paginate
 

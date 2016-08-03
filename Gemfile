@@ -27,6 +27,8 @@ gem 'gravtastic'
 
 gem 'simple_form'
 gem 'gmap_coordinates_picker'
+gem 'gmaps4rails'
+gem 'underscore-rails'
 
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
