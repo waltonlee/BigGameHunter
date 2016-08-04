@@ -22,6 +22,7 @@
 //= require turbolinks
 //= require bootstrap
 //= require bindWithDelay
+//= moment
 //= require jquery.datetimepicker
 //= require underscore
 //= require gmaps/google

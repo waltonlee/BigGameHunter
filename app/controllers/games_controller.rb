@@ -5,6 +5,18 @@ class GamesController < ApplicationController
   # GET /games.json
   def index
     @games = Game.all
+    @partial = params[:view] || "map"
+    if @partial == "map"
+      @hash = Gmaps4rails.build_markers(@games) do |game, marker|
+        marker.lat game.latitude
+        marker.lng game.longitude
+        marker.picture({
+          :url => view_context.image_path(game.gametype.image + "_pin_red.png"),
+          :width => 32,
+          :height => 56
+          })
+      end
+    end
   end
 
   # GET /games/1
