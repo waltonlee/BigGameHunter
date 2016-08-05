@@ -10,31 +10,13 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 
-@import "bootstrap-sprockets";
-@import "bootstrap";
-@import "font-awesome";
-@import "jquery.datetimepicker";
-@import "*";
-
 //
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
-//= require bindWithDelay
-//= moment
-//= require jquery.datetimepicker
 //= require underscore
 //= require gmaps/google
+//= require moment
+//= require bootstrap-datetimepicker
 //= require_tree .
-
-$(document).ready(function(){
-  $("#event_when").datetimepicker({
-    format:'Y/m/d H:i'
-  });
-  $("#user_dob").datetimepicker({
-    timepicker:false,
-    format:'Y/m/d',
-    maxDate:'0'
-  });
-});

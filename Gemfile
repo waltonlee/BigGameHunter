@@ -25,7 +25,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'gravtastic'
 
-gem 'simple_form'
 gem 'gmap_coordinates_picker'
 gem 'gmaps4rails'
 gem 'underscore-rails'
