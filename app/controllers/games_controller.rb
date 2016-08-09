@@ -8,6 +8,12 @@ class GamesController < ApplicationController
     @partial = params[:view] || "map"
     if @partial == "map"
       @hash = Gmaps4rails.build_markers(@games) do |game, marker|
+        marker.infowindow "<p> 
+          Name: #{game.name} <br />
+          Creator: #{game.user.name} <br />
+          Start: #{game.start} <br />
+          End: #{game.end}
+          </p>"
         marker.lat game.latitude
         marker.lng game.longitude
         marker.picture({
@@ -75,7 +81,7 @@ class GamesController < ApplicationController
   def leave
      @game = Game.find(params[:id])
      current_user.attended_events.delete(@game)
-     redirect_to current_user
+     redirect_to games_url
   end
 
   # DELETE /games/1

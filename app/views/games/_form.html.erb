@@ -23,11 +23,21 @@
       </div>
       <div class="field">
         <%= f.label :start %><br>
-        <%= f.datetime_select :start %>
+        <div class='input-group date' id='datetimepicker'>
+        <%= f.text_field :start, :class => "form-control"%>
+          <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+          </span>
+      </div>
       </div>
       <div class="field">
         <%= f.label :end %><br>
-        <%= f.datetime_select :end %>
+        <div class='input-group date' id='datetimepicker2'>
+        <%= f.text_field :end, :class => "form-control"%>
+          <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+          </span>
+      </div>
       </div>
       <div class="field">
         <%= f.label :address %><br>
@@ -40,3 +50,12 @@
     <% end %>
   </div>
 </div>
+
+    <script type="text/javascript">
+      $(function () {
+        $('#datetimepicker').datetimepicker({defaultDate: "<%= @game.start %>",
+      format: "YYYY-MM-DD hh:mm a Z"});
+        $('#datetimepicker2').datetimepicker({defaultDate: "<%= @game.end %>",
+      format: "YYYY-MM-DD hh:mm a Z"});
+      });
+    </script>
