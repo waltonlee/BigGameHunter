@@ -47,6 +47,7 @@ class GamesController < ApplicationController
 
     respond_to do |format|
       if @game.save
+        UserMailer.example_email(current_user).deliver
         format.html { redirect_to @game, notice: 'Game was successfully created.' }
         format.json { render :show, status: :created, location: @game }
       else
