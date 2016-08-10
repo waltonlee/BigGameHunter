@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
 
   devise_for :users, :controllers => { registrations: 'registrations' }
-  resources :users do
+  resources :users, :only => [:show, :index] do
     member do
       post :follow
       delete :unfollow

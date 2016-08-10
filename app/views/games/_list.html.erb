@@ -17,12 +17,11 @@
     <% @games.each do |game| %>
       <tr>
         <td><%= image_tag(game.gametype.image, size: "50") %></td>
-        <td><%= game.name %></td>
+        <td><%= link_to game.name, game %></td>
         <td><%= link_to game.user.name, game.user %></td>
         <td><%= game.start.strftime("%m/%d %I:%M%p %Z") %></td>
         <td><%= game.end.strftime("%m/%d %I:%M%p %Z") %></td>
         <td><%= game.attendees.count %></td>
-        <td><%= link_to 'Show', game, :class => 'btn btn-secondary btn-sm' %></td>
         <% if user_signed_in? && current_user!=game.user && !game.attendees.map(&:id).include?(current_user.id) %>
           <td>
             <%= button_to 'join game', join_game_path(game.id),:class => 'btn btn-secondary btn-sm', :method => :post %>
