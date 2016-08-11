@@ -81,7 +81,8 @@ class GamesController < ApplicationController
     end
   end
 
-  #POST
+  #POST /GET?
+
   def join
      @game = Game.find(params[:id])
      current_user.attended_events << @game

@@ -5,6 +5,7 @@
   </head>
   <body>
     <h1><%= @current_user.name %> has made a new <%= @game.gametype.name %> game!</h1>
-    <p>Join the game here! <%= link_to 'join game', game_url(@game.id, user_token: @user.authentication_token, user_email: @user.email) %></p>
+    <p>Join the game here! <%= link_to 'view game', game_url(@game.id, user_token: @user.authentication_token, user_email: @user.email) %></p>
+    <p><%= link_to 'join game', join_game_url(@game.id, user_token: @user.authentication_token, user_email: @user.email) %></p>
   </body>
 </html>

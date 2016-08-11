@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :gametypes
   resources :games do
     member do
-      post :join
+      get :join
       delete :leave
     end
   end
