@@ -25,6 +25,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'gravtastic'
 gem 'simple_form'
+gem 'simple_token_authentication', '~> 1.0'
 
 gem 'gmap_coordinates_picker'
 gem 'gmaps4rails'
@@ -37,7 +38,6 @@ gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 
 gem 'acts_as_follower'
-gem 'sendgrid'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

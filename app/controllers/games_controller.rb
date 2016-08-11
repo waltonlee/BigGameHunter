@@ -48,13 +48,22 @@ class GamesController < ApplicationController
     respond_to do |format|
       if @game.save
         #UserMailer.example_email(current_user).deliver
-        UserMailer.game_added_email(@game.gametype, current_user).deliver
+        game_added_email(@game, current_user)
         format.html { redirect_to @game, notice: 'Game was successfully created.' }
         format.json { render :show, status: :created, location: @game }
       else
         format.html { render :new }
         format.json { render json: @game.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def game_added_email(game, current_user)
+    players = game.gametype.users.where.not(id: current_user.id).pluck(:id)
+    followers = current_user.followers_by_type('User').pluck(:id)
+    users = User.where('id IN (?) OR id IN (?)', players, followers)
+    users.each do |user|
+      UserMailer.single_game_email(user, game, current_user).deliver_later #add resque?
     end
   end
 
