@@ -21,6 +21,7 @@
         <%= f.label :gametype %><br>
         <%= f.collection_select(:gametype_id, Gametype.all, :id, :name) %>
       </div>
+
       <div class="field">
         <%= f.label :start %><br>
         <div class='input-group date' id='datetimepicker'>
@@ -28,8 +29,9 @@
           <span class="input-group-addon">
               <span class="glyphicon glyphicon-calendar"></span>
           </span>
+        </div>
       </div>
-      </div>
+
       <div class="field">
         <%= f.label :end %><br>
         <div class='input-group date' id='datetimepicker2'>
@@ -37,8 +39,9 @@
           <span class="input-group-addon">
               <span class="glyphicon glyphicon-calendar"></span>
           </span>
+        </div>
       </div>
-      </div>
+
       <div class="field">
         <%= f.label :address %><br>
         <%= f.gmap_coordinate_picker :api_key => 'AIzaSyDJbp32tSbN-En9Zb2eU43iGwPmqp2uYwc' %>
@@ -53,9 +56,28 @@
 
     <script type="text/javascript">
       $(function () {
-        $('#datetimepicker').datetimepicker({defaultDate: "<%= @game.start %>",
-      format: "YYYY-MM-DD hh:mm a Z"});
-        $('#datetimepicker2').datetimepicker({defaultDate: "<%= @game.end %>",
-      format: "YYYY-MM-DD hh:mm a Z"});
+        $('#datetimepicker').datetimepicker({
+            <% if @game.start != nil %>
+            defaultDate: "<%= @game.start %>",
+            <% else %>
+            defaultDate: moment(),
+            <% end %>
+            format: "YYYY-MM-DD hh:mm a Z",
+            sideBySide: true});
+        $('#datetimepicker2').datetimepicker({
+            <% if @game.end != nil %>
+            defaultDate: "<%= @game.end %>",
+            <% else %>
+            defaultDate: moment(),
+            <% end %>
+            format: "YYYY-MM-DD hh:mm a Z",
+            useCurrent:false,
+            sideBySide: true});
+        $("#datetimepicker").on("dp.change", function (e) {
+           if(e.date.isAfter($('#datetimepicker2').data("DateTimePicker").date())){
+            $('#datetimepicker2').data("DateTimePicker").date(e.date);
+           }
+            $('#datetimepicker2').data("DateTimePicker").minDate(e.date);
+        });
       });
     </script>

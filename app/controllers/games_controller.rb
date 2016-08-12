@@ -16,6 +16,7 @@ class GamesController < ApplicationController
           </p>"
         marker.lat game.latitude
         marker.lng game.longitude
+        marker.title game.name
         marker.picture({
           :url => view_context.image_path(game.gametype.image + "_pin_red.png"),
           :width => 32,
