@@ -55,11 +55,11 @@ group :development, :test do
   gem 'sqlite3'
 
   gem 'spring'
+  #gem 'web-console', '~> 2.0'
 end
 
 group :production do
 	  # Access an IRB console on exception pages or by using <%= console %> in views
-  	gem 'web-console', '~> 2.0'
 	gem 'pg'
 	gem 'puma'
 	gem 'rails_12factor'
