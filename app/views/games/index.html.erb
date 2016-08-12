@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to "Map", games_path(view: "map") %>
-<%= link_to "List", games_path(view: "list") %>
+<%= link_to "Map", games_path(view: "map"), :class => 'btn btn-primary' %>
+<%= link_to "List", games_path(view: "list"),:class => 'btn btn-primary' %>
 
 <%= render @partial %>
 

@@ -11,9 +11,9 @@
 </div>
 
 <% if user_signed_in? && current_user!=@game.user && !@game.attendees.map(&:id).include?(current_user.id) %>
-      <%= link_to 'join game', join_game_path(@game.id),:class => 'btn btn-secondary btn-sm'%>
+      <%= link_to 'join game', join_game_path(@game.id),:class => 'btn btn-primary btn-sm'%>
   <% elsif user_signed_in? && current_user!=@game.user && @game.attendees.map(&:id).include?(current_user.id) %>
-      <%= button_to 'leave game', leave_game_path(@game.id),:class => 'btn btn-secondary btn-sm', :method => :delete %>
+      <%= button_to 'leave game', leave_game_path(@game.id),:class => 'btn btn-primary btn-sm', :method => :delete %>
   <% end %>
 
 <p>

@@ -4,9 +4,10 @@
 
 /* universal */
 
-body {
+/*body {
   padding-top: 60px;
-}
+}*/
+/*
 
 section {
   overflow: auto;
@@ -22,9 +23,87 @@ textarea {
 
 .center h1 {
   margin-bottom: 10px;
+}*/
+
+/* navbar */
+$bgDefault      : #9b59b6;
+$bgHighlight    : #8e44ad;
+$colDefault     : #ecf0f1;
+$colHighlight   : #ecdbff;
+$dropDown       : false;
+.navbar-default {
+
+  background-color: $bgDefault;
+  border-color: $bgHighlight;
+  .navbar-brand {
+    line-height: -5px;
+    color: $colDefault;
+    &:hover, &:focus {
+      color: $colHighlight; }}
+  .navbar-text {
+    color: $colDefault; }
+  .navbar-nav {
+    > li {
+      > a {
+        color: $colDefault;
+        &:hover,  &:focus {
+          color: $colHighlight; }}
+      @if $dropDown {
+        > .dropdown-menu {
+          background-color: $bgDefault;
+          > li {
+            > a {
+              color: $colDefault;
+              &:hover,  &:focus {
+                color: $colHighlight;
+                background-color: $bgHighlight; }}
+            > .divider {
+              background-color: $bgHighlight;}}}}}
+    @if $dropDown {
+      .open .dropdown-menu > .active {
+        > a, > a:hover, > a:focus {
+          color: $colHighlight;
+          background-color: $bgHighlight; }}}
+    > .active {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}
+    > .open {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}}
+  .navbar-toggle {
+    border-color: $bgHighlight;
+    &:hover, &:focus {
+      background-color: $bgHighlight; }
+    .icon-bar {
+      background-color: $colDefault; }}
+  .navbar-collapse,
+  .navbar-form {
+    border-color: $colDefault; }
+  .navbar-link {
+    color: $colDefault;
+    &:hover {
+      color: $colHighlight; }}}
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu {
+    > li > a {
+      color: $colDefault;
+      &:hover, &:focus {
+        color: $colHighlight; }}
+    > .active {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}}
 }
 
-/* typography */
+.effect1{
+     box-shadow: 0 10px 6px -6px #777;
+}
+
+
+
+/* typography
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
@@ -51,7 +130,7 @@ p {
   line-height: 1.7em;
 }
 
-/* header */
+ header 
 
 #logo {
   vertical-align: middle;
@@ -71,13 +150,13 @@ p {
   text-decoration: none;
 }
 
-/* table */
+ table 
 
 .table > tbody > tr > td {
      vertical-align: middle;
 }
 
-/* games */
+ games 
 
 .games {
   list-style: none;
@@ -130,7 +209,7 @@ span.picture {
   }
 }
 
-/* Users index */
+ Users index 
 
 .users {
   list-style: none;
@@ -141,3 +220,4 @@ span.picture {
     border-bottom: 1px solid $gray-lighter;
   }
 }
+*/

@@ -13,17 +13,17 @@
         </div>
       <% end %>
 
-      <div class="field">
-        <%= f.label :name %><br>
-        <%= f.text_field :name %>
+      <div class="form-group">
+        <%= f.label :name, class: "control-label" %><br>
+        <%= f.text_field :name, class: "form-control" %>
       </div>
-      <div class="field">
-        <%= f.label :gametype %><br>
-        <%= f.collection_select(:gametype_id, Gametype.all, :id, :name) %>
+      <div class="form-group">
+        <%= f.label :gametype, class: "control-label" %><br>
+        <%= f.collection_select(:gametype_id, Gametype.all, :id, :name, {prompt: "Select a game!"}, {class: "form-control"})%>
       </div>
 
-      <div class="field">
-        <%= f.label :start %><br>
+      <div class="form-group">
+        <%= f.label :start, class: "control-label" %><br>
         <div class='input-group date' id='datetimepicker'>
         <%= f.text_field :start, :class => "form-control"%>
           <span class="input-group-addon">
@@ -32,8 +32,8 @@
         </div>
       </div>
 
-      <div class="field">
-        <%= f.label :end %><br>
+      <div class="form-group">
+        <%= f.label :end, class: "control-label" %><br>
         <div class='input-group date' id='datetimepicker2'>
         <%= f.text_field :end, :class => "form-control"%>
           <span class="input-group-addon">
@@ -42,13 +42,13 @@
         </div>
       </div>
 
-      <div class="field">
-        <%= f.label :address %><br>
+      <div class="form-group">
+        <%= f.label :address, class: "control-label" %><br>
         <%= f.gmap_coordinate_picker :api_key => 'AIzaSyDJbp32tSbN-En9Zb2eU43iGwPmqp2uYwc' %>
       </div>
       <%= f.hidden_field :user_id %>
       <div class="actions">
-        <%= f.submit %>
+        <%= f.submit "Submit", :class => "btn btn-default btn-primary" %>
       </div>
     <% end %>
   </div>
