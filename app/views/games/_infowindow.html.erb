@@ -1,0 +1,11 @@
+<h3> <%= link_to game.name, game_path(game.id) %> </h3>
+<p> 
+	Creator: <%= link_to game.user.name, game.user %> <br />
+	Start:  <%= game.start.strftime("%I:%M%p %Z %m/%d") %> <br />
+	End:  <%= game.end.strftime("%I:%M%p %Z %m/%d") %> <br />
+	<% if user_signed_in? && current_user!=game.user && !game.attendees.map(&:id).include?(current_user.id) %>
+        <%= link_to 'join game', join_game_path(game.id),:class => 'btn btn-secondary btn-sm'%>
+    <% elsif user_signed_in? && current_user!=game.user && game.attendees.map(&:id).include?(current_user.id) %>
+        <%= button_to 'leave game', leave_game_path(game.id),:class => 'btn btn-secondary btn-sm', :method => :delete %>
+    <% end %>
+</p>

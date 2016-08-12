@@ -8,17 +8,20 @@ class GamesController < ApplicationController
     @partial = params[:view] || "map"
     if @partial == "map"
       @hash = Gmaps4rails.build_markers(@games) do |game, marker|
-        marker.infowindow "<p> 
-          Name: #{game.name} <br />
-          Creator: #{game.user.name} <br />
-          Start: #{game.start} <br />
-          End: #{game.end}
-          </p>"
+        if game.start < Time.now
+          pin = "_pin_red.png"
+        elsif game.end < Time.now + 1.days
+          pin = "_pin_orange.png"
+        else
+          pin = "_pin_yellow.png"
+        end
+          
+        marker.infowindow render_to_string(:partial => "/games/infowindow", :locals => { :game => game})
         marker.lat game.latitude
         marker.lng game.longitude
         marker.title game.name
         marker.picture({
-          :url => view_context.image_path(game.gametype.image + "_pin_red.png"),
+          :url => view_context.image_path(game.gametype.image + pin),
           :width => 32,
           :height => 56
           })

@@ -6,10 +6,15 @@
 <div>
 <p>
   <%= image_tag(@game.gametype.image, size: "100") %>
-  <strong>Name:</strong>
   <%= @game.name %>
 </p>
 </div>
+
+<% if user_signed_in? && current_user!=@game.user && !@game.attendees.map(&:id).include?(current_user.id) %>
+      <%= link_to 'join game', join_game_path(@game.id),:class => 'btn btn-secondary btn-sm'%>
+  <% elsif user_signed_in? && current_user!=@game.user && @game.attendees.map(&:id).include?(current_user.id) %>
+      <%= button_to 'leave game', leave_game_path(@game.id),:class => 'btn btn-secondary btn-sm', :method => :delete %>
+  <% end %>
 
 <p>
   <strong>Creator:</strong>
