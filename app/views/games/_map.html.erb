@@ -4,6 +4,20 @@
 <script src='//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js' type='text/javascript'></script> <!-- only if you need custom infoboxes -->
 <% end %>
 
+
+<ul class="nav nav-tabs">
+  <li class="nav-item active">
+    <%= link_to "Map", games_path(view: "map") %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "List", games_path(view: "list") %>
+  </li>
+  <li class="pull-right tag"><a>
+    Listing Games</a>
+  </li>
+</ul>
+
+
 <div style='width: 100%;'>
   <div id="map" style='width: 100%; height: 400px;'></div>
 </div>

@@ -1,7 +1,17 @@
-<h1>Listing Games</h1>
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <%= link_to "Map", games_path(view: "map") %>
+  </li>
+  <li class="nav-item active">
+    <%= link_to "List", games_path(view: "list") %>
+  </li>
+  <li class="pull-right tag"><a>
+    Listing Games</a>
+  </li>
+</ul>
 
-<table class = "table">
-  <thead>
+<table class = "table top20">
+  <thead class="thead-default">
     <tr>
       <th></th>
       <th>Name</th>
