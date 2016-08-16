@@ -39,6 +39,20 @@ class UsersController < ApplicationController
 	  redirect_to @user
 	end
 
+  def following
+    #@title = "Following"
+    @user  = User.find(params[:id])
+    @users = @user.following_users.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+  def followers
+    #@title = "Followers"
+    @user  = User.find(params[:id])
+    @users = @user.user_followers.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
 
 	private
     # Use callbacks to share common setup or constraints between actions.

@@ -1,60 +1,47 @@
 <div class="row">
   <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
+    <section>
+      <h1><%= gravatar_for @user%>
+      <%= @user.name %></h1>
     </section>
-  </aside>
-  <div class="col-md-8">
+    <section class="stats">
+      <%= render 'stats' %>
+    </section>
     <% if @user.followed_by?(current_user) %>
       <%= button_to 'unfollow!', unfollow_user_path(@user.id),:class => 'btn btn-secondary btn-sm', :method => :delete %>
     <% elsif @user != current_user %>
       <%= button_to 'follow!', follow_user_path(@user.id),:class => 'btn btn-secondary btn-sm', :method => :post %>
     <% end %>
 
-  	<h3>Joined at: <%= @user.created_at %></h3>
+  </aside>
+  <div class="col-md-8">
 
-    <h3>Followers:
-      <ul>
-        <% @user.followers.each do |follower| %>
-          <li>
-          <%= link_to follower.name, follower %>
-          </li>
-        <% end %>
-      </ul>
-    </h3>
-
-  	<h3>Games Following:
-      <ul>
-        <% @user.gametypes.each do |gametype| %>
-            <li>
-            <%= link_to gametype.name, gametype %>
-          </li>
-        <% end %>
-      </ul>
-    </h3>
+  	<h3>Games Following:</h3>
+     <div class="user_avatars">
+      <% @user.gametypes.each do |gametype| %>
+          <%= link_to image_tag(gametype.image, size: "30"), gametype %>
+      <% end %>
+      </div>
 
   </div>
 </div>
 <div class="row">
   <div class="col-md-6">
+    <h2>Games Owned (<%= @user.games.count %>)</h2>
     <% if @user.games.any? %>
-      <h3>Games Owned (<%= @user.games.count %>)</h3>
-      <ol class="games">
+      <ul class="list">
         <%= render @games %>
-      </ol>
+      </ul>
       <%= will_paginate @games %>
     <% end %>
   </div>
   <div class="col-md-6">
+    <h2>Games Joined (<%= @user.attended_events.count %>)</h2>
     <% if @user.attended_events.any? %>
       <% @games = @user.attended_events.paginate(page: params[:page]) %>
-      <h3>Games Joined (<%= @user.attended_events.count %>)</h3>
-      <ol class="games">
+      <ul class="list">
         <%= render @games %>
-      </ol>
+      </ul>
       <%= will_paginate @games %>
     <% end %>
   </div>
