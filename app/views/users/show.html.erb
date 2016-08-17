@@ -1,8 +1,8 @@
 <div class="row">
-  <aside class="col-md-4">
+  <aside class="col-md-3">
     <section>
-      <h1><%= gravatar_for @user%>
-      <%= @user.name %></h1>
+      <h5><%= gravatar_for @user%>
+      <%= @user.name %></h5>
     </section>
     <section class="stats">
       <%= render 'stats' %>
@@ -19,7 +19,7 @@
   	<h3>Games Following:</h3>
      <div class="user_avatars">
       <% @user.gametypes.each do |gametype| %>
-          <%= link_to image_tag(gametype.image, size: "30"), gametype %>
+          <%= link_to image_tag(gametype.image, size: "30", alt: gametype.name, title: gametype.name), gametype %>
       <% end %>
       </div>
 
@@ -27,8 +27,8 @@
 </div>
 <div class="row">
   <div class="col-md-6">
-    <h2>Games Owned (<%= @user.games.count %>)</h2>
-    <% if @user.games.any? %>
+    <h4>Games Owned (<%= @games.count %>)</h4>
+    <% if @games.any? %>
       <ul class="list">
         <%= render @games %>
       </ul>
@@ -36,9 +36,9 @@
     <% end %>
   </div>
   <div class="col-md-6">
-    <h2>Games Joined (<%= @user.attended_events.count %>)</h2>
-    <% if @user.attended_events.any? %>
-      <% @games = @user.attended_events.paginate(page: params[:page]) %>
+    <h4>Games Attending (<%= @user.attended_events.where('end >= ?', Time.now).count %>)</h4>
+    <% if @user.attended_events.where('end >= ?', Time.now).any? %>
+      <% @games = @user.attended_events.where('end >= ?', Time.now).paginate(page: params[:page]) %>
       <ul class="list">
         <%= render @games %>
       </ul>
