@@ -1,5 +1,9 @@
 class GamesController < ApplicationController
+
+  skip_before_action :authenticate_user!, :only => [:index, :show]
+  #before_action :authenticate_user!, :except => [:show, :index]
   before_action :set_game, only: [:show, :edit, :update, :destroy]
+  
 
   # GET /games
   # GET /games.json

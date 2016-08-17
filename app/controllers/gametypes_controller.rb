@@ -1,4 +1,7 @@
 class GametypesController < ApplicationController
+  
+  skip_before_action :authenticate_user!, :only => [:index, :show]
+  #before_action :authenticate_user!, :except => [:show, :index]
   before_action :set_gametype, only: [:show, :edit, :update, :destroy]
 
   # GET /gametypes
@@ -14,11 +17,19 @@ class GametypesController < ApplicationController
 
   # GET /gametypes/new
   def new
+    if !current_user.admin?
+      flash[:notice] = 'Not an admin'
+      redirect_to gametypes_path
+    end
     @gametype = Gametype.new
   end
 
   # GET /gametypes/1/edit
   def edit
+    if !current_user.admin?
+      flash[:notice] = 'Not an admin'
+      redirect_to gametypes_path
+    end
   end
 
   # POST /gametypes

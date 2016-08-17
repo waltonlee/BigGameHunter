@@ -24,7 +24,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise'
 gem 'gravtastic'
-gem 'simple_form'
 gem 'simple_token_authentication', '~> 1.0'
 
 gem 'gmap_coordinates_picker'
