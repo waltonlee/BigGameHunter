@@ -2,35 +2,42 @@
 <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
 <script src='//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js' type='text/javascript'></script> <!-- only if you need custom infoboxes -->
 
-<!-- <p id="notice"><%= notice %></p> -->
-<div>
-<p>
-  <%= image_tag(@game.gametype.image, size: "100") %>
-  <%= @game.name %>
-</p>
-</div>
+<div class="row">
+  <aside class="col-md-4">
+    <section>
+      <h5><%= image_tag(@game.gametype.image, size: "50") %>
+      <%= @game.name %></h5>
+    </section>
+    <section>
+    <p>
+      <strong>Start:</strong>
+      <%= @game.start.strftime("%m/%d %I:%M%p %Z") %>
+    </p>
 
-<% if user_signed_in? && current_user!=@game.user && !@game.attendees.map(&:id).include?(current_user.id) %>
+    <p>
+      <strong>End:</strong>
+      <%= @game.end.strftime("%m/%d %I:%M%p %Z") %>
+    </p>
+    </section>
+    <% if user_signed_in? && current_user!=@game.user && !@game.attendees.map(&:id).include?(current_user.id) %>
       <%= link_to 'join game', join_game_path(@game.id),:class => 'btn btn-primary btn-sm'%>
-  <% elsif user_signed_in? && current_user!=@game.user && @game.attendees.map(&:id).include?(current_user.id) %>
-      <%= button_to 'leave game', leave_game_path(@game.id),:class => 'btn btn-primary btn-sm', :method => :delete %>
-  <% end %>
+    <% elsif user_signed_in? && current_user!=@game.user && @game.attendees.map(&:id).include?(current_user.id) %>
+        <%= button_to 'leave game', leave_game_path(@game.id),:class => 'btn btn-primary btn-sm', :method => :delete %>
+    <% end %>
+  </aside>
 
 <p>
   <strong>Creator:</strong>
-  <%= gravatar_for @game.user, size: 50 %>
   <%= @game.user.name %>
 </p>
 
-<p>
-  <strong>Start:</strong>
-  <%= @game.start %>
-</p>
+<% if @game.need_players %>
 
 <p>
-  <strong>End:</strong>
-  <%= @game.end %>
+  <strong>Needs <%= pluralize(@game.need_count, 'player') %>! </strong>
 </p>
+
+<% end %>
 
 <p>
   <strong>Latitude:</strong>
@@ -40,6 +47,11 @@
 <p>
   <strong>Longitude:</strong>
   <%= @game.longitude %>
+</p>
+
+<p>
+  <strong>Location Description:</strong><br>
+  <%= @game.description %>
 </p>
 
 <div style='width: 800px;'>
@@ -57,10 +69,10 @@
 	<% end %>
 </ul>
 
-
-
 <%= link_to 'Edit', edit_game_path(@game) %> |
 <%= link_to 'Back', games_path %>
+
+</div>
 
 <script>
 $(document).ready(function(){

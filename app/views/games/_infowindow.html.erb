@@ -3,6 +3,11 @@
 	Creator: <%= link_to game.user.name, game.user %> <br />
 	Start:  <%= game.start.strftime("%I:%M %p %m/%d") %> <br />
 	End:  <%= game.end.strftime("%I:%M %p %m/%d") %> <br />
+	<% if game.need_players %>
+	<p>
+	  <strong>Needs <%= pluralize(game.need_count, 'player') %>! </strong>
+	</p>
+	<% end %>
 	<% if user_signed_in? && current_user!=game.user && !game.attendees.map(&:id).include?(current_user.id) %>
         <%= link_to 'join game', join_game_path(game.id),:class => 'btn btn-primary btn-sm'%>
     <% elsif user_signed_in? && current_user!=game.user && game.attendees.map(&:id).include?(current_user.id) %>

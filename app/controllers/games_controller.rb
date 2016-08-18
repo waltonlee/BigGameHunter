@@ -12,18 +12,20 @@ class GamesController < ApplicationController
     @partial = params[:view] || "map"
     if @partial == "map"
       @hash = Gmaps4rails.build_markers(@games) do |game, marker|
-        if game.start < Time.now
-          pin = "_pin_red.png"
+        if game.need_players && game.need_count > game.count
+          pin = "_pin_gray.png"
+        elsif game.start < Time.now
+          pin = "_pin_green.png"
         elsif game.end < Time.now + 1.days
-          pin = "_pin_orange.png"
-        else
           pin = "_pin_yellow.png"
+        else
+          pin = "_pin_red.png"
         end
           
         marker.infowindow render_to_string(:partial => "/games/infowindow", :locals => { :game => game})
         marker.lat game.latitude
         marker.lng game.longitude
-        marker.title game.name
+        marker.title (game.name + " - " + game.gametype.name)
         marker.picture({
           :url => view_context.image_path(game.gametype.image + pin),
           :width => 32,
@@ -94,6 +96,7 @@ class GamesController < ApplicationController
   def join
      @game = Game.find(params[:id])
      current_user.attended_events << @game
+     @game.count = @game.count + 1
      redirect_to @game
   end
 
@@ -101,6 +104,7 @@ class GamesController < ApplicationController
   def leave
      @game = Game.find(params[:id])
      current_user.attended_events.delete(@game)
+     @game.count = @game.count - 1
      redirect_to games_url
   end
 
@@ -122,6 +126,6 @@ class GamesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
-      params.require(:game).permit(:name, :start, :end, :user_id, :gametype_id, :latitude, :longitude)
+      params.require(:game).permit(:name,:description , :start, :end, :user_id, :gametype_id, :need_players, :need_count, :latitude, :longitude)
     end
 end

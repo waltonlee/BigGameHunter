@@ -14,16 +14,31 @@
       <% end %>
 
       <div class="form-group">
-        <%= f.label :name, class: "control-label" %><br>
+        <%= f.label :name, 'Event Name', class: "control-label" %><br>
         <%= f.text_field :name, class: "form-control" %>
-      </div>
-      <div class="form-group">
-        <%= f.label :gametype, class: "control-label" %><br>
-        <%= f.collection_select(:gametype_id, Gametype.all, :id, :name, {prompt: "Select a game!"}, {class: "form-control"})%>
       </div>
 
       <div class="form-group">
-        <%= f.label :start, class: "control-label" %><br>
+        <%= f.label :gametype, 'What game are you playing?', class: "control-label" %><br>
+        <%= f.collection_select(:gametype_id, Gametype.all, :id, :name, {prompt: "Select a game!"}, {class: "form-control"})%>
+      </div>
+
+      <div class="row">
+
+      <div class="form-group col-md-4">
+        <%= f.label :need_players, 'Need More Players?', class: "control-label" %>
+        <%= f.check_box :need_players, {}, true, false %>
+      </div>
+
+      <div class="form-group col-md-4" id="need_count" style="display:none;">
+        <%= f.label :need_count, 'How many?', class: "control-label" %><br>
+        <%= f.number_field :need_count, in: 0..100, step: 1, class: "form-control" %>
+      </div>
+
+      </div>
+
+      <div class="form-group">
+        <%= f.label :start, 'Start Time', class: "control-label" %><br>
         <div class='input-group date' id='datetimepicker'>
         <%= f.text_field :start, :class => "form-control"%>
           <span class="input-group-addon">
@@ -33,7 +48,7 @@
       </div>
 
       <div class="form-group">
-        <%= f.label :end, class: "control-label" %><br>
+        <%= f.label :end, 'End Time', class: "control-label" %><br>
         <div class='input-group date' id='datetimepicker2'>
         <%= f.text_field :end, :class => "form-control"%>
           <span class="input-group-addon">
@@ -43,9 +58,15 @@
       </div>
 
       <div class="form-group">
-        <%= f.label :address, class: "control-label" %><br>
+        <%= f.label :address, 'Pick a Location!', class: "control-label" %><br>
         <%= f.gmap_coordinate_picker :api_key => 'AIzaSyDJbp32tSbN-En9Zb2eU43iGwPmqp2uYwc' %>
       </div>
+
+      <div class="form-group">
+        <%= f.label :description, 'Location Description', class: "control-label" %><br>
+        <%= f.text_area :description, class: "form-control" %>
+      </div>
+
       <%= f.hidden_field :user_id %>
       <div class="actions">
         <%= f.submit "Submit", :class => "btn btn-default btn-primary" %>
@@ -86,4 +107,20 @@
             $('#datetimepicker2').data("DateTimePicker").minDate(e.date);
         });
       });
+      var checkbox = document.getElementById('game_need_players');
+      var count_div = document.getElementById('need_count');
+      checkbox.onchange = function() {
+         if(this.checked) {
+           count_div.style['display'] = 'block';
+         } else {
+           count_div.style['display'] = 'none';
+         }
+      };
+      window.onload = function() {
+         if(checkbox.checked) {
+           count_div.style['display'] = 'block';
+         } else {
+           count_div.style['display'] = 'none';
+         }
+      };
     </script>

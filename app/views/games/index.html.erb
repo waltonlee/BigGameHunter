@@ -1,9 +1,1 @@
-<!-- <p id="notice"><%= notice %></p> -->
-
 <%= render @partial %>
-
-<% if user_signed_in? %>
-  <%= link_to 'New Game', new_game_path,  :class => 'submit btn btn-primary btn-lg' %>
- <% else %>
-   <h3> Sign in to join and make games! </h3>
-<% end %>
