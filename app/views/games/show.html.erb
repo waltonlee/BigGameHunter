@@ -11,12 +11,12 @@
     <section>
     <p>
       <strong>Start:</strong>
-      <%= @game.start.strftime("%m/%d %I:%M%p %Z") %>
+      <%= @game.start_time.strftime("%m/%d %I:%M%p %Z") %>
     </p>
 
     <p>
       <strong>End:</strong>
-      <%= @game.end.strftime("%m/%d %I:%M%p %Z") %>
+      <%= @game.end_time.strftime("%m/%d %I:%M%p %Z") %>
     </p>
     </section>
     <% if user_signed_in? && current_user!=@game.user && !@game.attendees.map(&:id).include?(current_user.id) %>

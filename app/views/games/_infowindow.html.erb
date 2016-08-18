@@ -1,8 +1,8 @@
 <h3> <%= link_to game.name, game_path(game.id) %> </h3>
 <p> 
 	Creator: <%= link_to game.user.name, game.user %> <br />
-	Start:  <%= game.start.strftime("%I:%M %p %m/%d") %> <br />
-	End:  <%= game.end.strftime("%I:%M %p %m/%d") %> <br />
+	Start:  <%= game.start_time.strftime("%I:%M %p %m/%d") %> <br />
+	End:  <%= game.end_time.strftime("%I:%M %p %m/%d") %> <br />
 	<% if game.need_players %>
 	<p>
 	  <strong>Needs <%= pluralize(game.need_count, 'player') %>! </strong>

@@ -38,9 +38,9 @@
       </div>
 
       <div class="form-group">
-        <%= f.label :start, 'Start Time', class: "control-label" %><br>
+        <%= f.label :start_time, 'Start Time', class: "control-label" %><br>
         <div class='input-group date' id='datetimepicker'>
-        <%= f.text_field :start, :class => "form-control"%>
+        <%= f.text_field :start_time, :class => "form-control"%>
           <span class="input-group-addon">
               <span class="glyphicon glyphicon-calendar"></span>
           </span>
@@ -48,9 +48,9 @@
       </div>
 
       <div class="form-group">
-        <%= f.label :end, 'End Time', class: "control-label" %><br>
+        <%= f.label :end_time, 'End Time', class: "control-label" %><br>
         <div class='input-group date' id='datetimepicker2'>
-        <%= f.text_field :end, :class => "form-control"%>
+        <%= f.text_field :end_time, :class => "form-control"%>
           <span class="input-group-addon">
               <span class="glyphicon glyphicon-calendar"></span>
           </span>
@@ -78,8 +78,8 @@
     <script type="text/javascript">
       $(function () {
         $('#datetimepicker').datetimepicker({
-            <% if @game.start != nil %>
-            defaultDate: "<%= @game.start %>",
+            <% if @game.start_time != nil %>
+            defaultDate: "<%= @game.start_time %>",
             <% else %>
             defaultDate: moment(),
             <% end %>
@@ -87,13 +87,13 @@
             format: "YYYY-MM-DD hh:mm a Z",
             sideBySide: true});
         $('#datetimepicker2').datetimepicker({
-            <% if @game.end != nil %>
-            defaultDate: "<%= @game.end %>",
+            <% if @game.end_time != nil %>
+            defaultDate: "<%= @game.end_time %>",
             <% else %>
             defaultDate: moment(),
             <% end %>
-            <% if @game.start != nil %>
-            minDate: "<%= @game.start %>",
+            <% if @game.start_time != nil %>
+            minDate: "<%= @game.start_time %>",
             <% else %>
             minDate: moment().subtract(1,'day'),
             <% end %>

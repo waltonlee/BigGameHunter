@@ -8,7 +8,7 @@ class GamesController < ApplicationController
   # GET /games
   # GET /games.json
   def index
-    @games = Game.where("end >= ?", Time.now)
+    @games = Game.where("end_time >= ?", Time.now)
     @partial = params[:view] || "map"
     if @partial == "map"
       @hash = Gmaps4rails.build_markers(@games) do |game, marker|
@@ -42,7 +42,7 @@ class GamesController < ApplicationController
 
   # GET /games/new
   def new
-    if current_user.games.where("end >= ?", Time.now).count >= 3
+    if current_user.games.where("end_time >= ?", Time.now).count >= 3
       redirect_to games_path
       flash[:notice] = "Can't have more than three games"
     end
@@ -131,6 +131,6 @@ class GamesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
-      params.require(:game).permit(:name,:description , :start, :end, :user_id, :gametype_id, :need_players, :need_count, :latitude, :longitude)
+      params.require(:game).permit(:name,:description , :start_time, :end_time, :user_id, :gametype_id, :need_players, :need_count, :latitude, :longitude)
     end
 end

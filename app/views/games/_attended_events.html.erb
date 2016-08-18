@@ -3,9 +3,9 @@
   <span class="user"><%= link_to game.user.name, game.user %></span>
   <span class="name"><%= game.name %></span>
   <span class="start time">
-    Start Time: <%= game.start.strftime("%m/%d %I:%M%p %Z") %>
+    Start Time: <%= game.start_time.strftime("%m/%d %I:%M%p %Z") %>
   </span>
   <span class="end time">
-    End Time: <%= game.end.strftime("%m/%d %I:%M%p %Z") %>
+    End Time: <%= game.end_time.strftime("%m/%d %I:%M%p %Z") %>
   </span>
 </li>

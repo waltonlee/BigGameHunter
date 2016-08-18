@@ -1,7 +1,7 @@
 <li id="game-<%= game.id %>">
   <%= link_to image_tag(game.gametype.image, size: "50", :class=>"image"), game.gametype %>
   <span class="user"><%= link_to game.user.name, game.user %><br />
-  <span class="content"> Starts at <%= game.start.strftime("%m/%d %I:%M%p") %></span><br />
+  <span class="content"> Starts at <%= game.start_time.strftime("%m/%d %I:%M%p") %></span><br />
   <span class="timestamp">
     Posted <%= time_ago_in_words(game.created_at) %> ago.
   </span>

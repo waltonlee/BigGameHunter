@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160818074156) do
+ActiveRecord::Schema.define(version: 20160818152451) do
 
   create_table "follows", force: :cascade do |t|
     t.integer  "followable_id",                   null: false
@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(version: 20160818074156) do
 
   create_table "games", force: :cascade do |t|
     t.string   "name"
-    t.datetime "start"
-    t.datetime "end"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.integer  "user_id"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20160818074156) do
   end
 
   add_index "games", ["gametype_id"], name: "index_games_on_gametype_id"
-  add_index "games", ["start", "created_at"], name: "index_games_on_start_and_created_at"
+  add_index "games", ["start_time", "created_at"], name: "index_games_on_start_time_and_created_at"
   add_index "games", ["user_id"], name: "index_games_on_user_id"
 
   create_table "games_users", id: false, force: :cascade do |t|

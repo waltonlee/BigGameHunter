@@ -29,8 +29,8 @@
         <td><%= image_tag(game.gametype.image, size: "50") %></td>
         <td><%= link_to game.name, game %></td>
         <td><%= link_to game.user.name, game.user %></td>
-        <td><%= game.start.strftime("%m/%d %I:%M%p %Z") %></td>
-        <td><%= game.end.strftime("%m/%d %I:%M%p %Z") %></td>
+        <td><%= game.start_time.strftime("%m/%d %I:%M%p %Z") %></td>
+        <td><%= game.end_time.strftime("%m/%d %I:%M%p %Z") %></td>
         <td><%= game.attendees.count %></td>
         <% if user_signed_in? && current_user!=game.user && !game.attendees.map(&:id).include?(current_user.id) %>
           <td>

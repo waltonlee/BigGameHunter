@@ -36,9 +36,9 @@
     <% end %>
   </div>
   <div class="col-md-6">
-    <h4>Games Attending (<%= @user.attended_events.where("end >= ?", Time.now).count %>)</h4>
-    <% if @user.attended_events.where("end >= ?", Time.now).any? %>
-      <% @games = @user.attended_events.where("end >= ?", Time.now).paginate(page: params[:page]) %>
+    <h4>Games Attending (<%= @user.attended_events.where("end_time >= ?", Time.now).count %>)</h4>
+    <% if @user.attended_events.where("end_time >= ?", Time.now).any? %>
+      <% @games = @user.attended_events.where("end_time >= ?", Time.now).paginate(page: params[:page]) %>
       <ul class="list">
         <%= render @games %>
       </ul>

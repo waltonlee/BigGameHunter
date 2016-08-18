@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
 	def show
 		set_user
-	    @games = @user.games.where("end >= ?", Time.now).paginate(page: params[:page])
+	    @games = @user.games.where("end_time >= ?", Time.now).paginate(page: params[:page])
 	end
 
 	def follow
