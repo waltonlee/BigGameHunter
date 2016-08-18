@@ -8,7 +8,7 @@ class GamesController < ApplicationController
   # GET /games
   # GET /games.json
   def index
-    @games = Game.where('end >= ?', Time.now)
+    @games = Game.where("end >= ?", Time.now)
     @partial = params[:view] || "map"
     if @partial == "map"
       @hash = Gmaps4rails.build_markers(@games) do |game, marker|

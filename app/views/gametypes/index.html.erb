@@ -5,7 +5,6 @@
     <tr>
       <th>Name</th>
       <th>Image</th>
-      <th>Category</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,7 +14,6 @@
       <tr>
         <td><%= gametype.name %></td>
         <td><%= image_tag(gametype.image, size: "50") %></td>
-        <td><%= gametype.category %></td>
         <td><%= link_to 'Show', gametype %></td>
         <td><%= link_to 'Edit', edit_gametype_path(gametype) %></td>
         <td><%= link_to 'Destroy', gametype, method: :delete, data: { confirm: 'Are you sure?' } %></td>
