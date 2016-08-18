@@ -14,9 +14,9 @@ class GamesController < ApplicationController
       @hash = Gmaps4rails.build_markers(@games) do |game, marker|
         if game.need_players && game.need_count > game.count
           pin = "_pin_gray.png"
-        elsif game.start < Time.now
+        elsif game.start_time < Time.now
           pin = "_pin_green.png"
-        elsif game.end < Time.now + 1.days
+        elsif game.end_time < Time.now + 1.days
           pin = "_pin_yellow.png"
         else
           pin = "_pin_red.png"
