@@ -42,6 +42,10 @@ class GamesController < ApplicationController
 
   # GET /games/new
   def new
+    if current_user.games.where("end >= ?", Time.now).count >= 3
+      redirect_to games_path
+      flash[:notice] = "Can't have more than three games"
+    end
     @game = Game.new
   end
 
@@ -72,6 +76,7 @@ class GamesController < ApplicationController
     players = game.gametype.users.where.not(id: current_user.id).pluck(:id)
     followers = current_user.followers_by_type('User').pluck(:id)
     users = User.where('id IN (?) OR id IN (?)', players, followers)
+    users = users.where(receive: true)
     users.each do |user|
       UserMailer.single_game_email(user, game, current_user).deliver_later #add resque?
     end

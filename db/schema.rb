@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160818034350) do
+ActiveRecord::Schema.define(version: 20160818074156) do
 
   create_table "follows", force: :cascade do |t|
     t.integer  "followable_id",                   null: false
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 20160818034350) do
     t.datetime "updated_at",                                        null: false
     t.string   "authentication_token",   limit: 30
     t.boolean  "admin",                             default: false
+    t.boolean  "receive",                           default: true
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true
