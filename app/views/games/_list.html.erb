@@ -18,7 +18,7 @@
       <th>User</th>
       <th>Start</th>
       <th>End</th>
-      <th>Count</th>
+      <th>Players?</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -31,7 +31,13 @@
         <td><%= link_to game.user.name, game.user %></td>
         <td><%= game.start_time.strftime("%m/%d %I:%M%p %Z") %></td>
         <td><%= game.end_time.strftime("%m/%d %I:%M%p %Z") %></td>
-        <td><%= game.attendees.count %></td>
+        <td>
+        <% if game.need_players || game.count >= game.need_count %>
+          <span class="glyphicon glyphicon-ok">
+        <% else %>
+          <strong>Needs <%= pluralize(game.need_count - game.count, 'player') %>! </strong>
+        <% end %>
+        </td>
         <% if user_signed_in? && current_user!=game.user && !game.attendees.map(&:id).include?(current_user.id) %>
           <td>
             <%= link_to 'join', join_game_path(game.id),:class => 'btn btn-primary btn-sm'%>

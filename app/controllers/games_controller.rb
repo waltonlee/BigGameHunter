@@ -38,6 +38,7 @@ class GamesController < ApplicationController
   # GET /games/1
   # GET /games/1.json
   def show
+    @attendees = @game.attendees.paginate(page: params[:page])
   end
 
   # GET /games/new
@@ -51,6 +52,10 @@ class GamesController < ApplicationController
 
   # GET /games/1/edit
   def edit
+    if current_user != @game.user
+      redirect_to games_path
+      flash[:notice] = "You don't own that"
+    end
   end
 
   # POST /games
@@ -101,7 +106,7 @@ class GamesController < ApplicationController
   def join
      @game = Game.find(params[:id])
      current_user.attended_events << @game
-     @game.count = @game.count + 1
+     @game.update_attributes(:count => @game.count + 1)
      redirect_to @game
   end
 
@@ -109,13 +114,17 @@ class GamesController < ApplicationController
   def leave
      @game = Game.find(params[:id])
      current_user.attended_events.delete(@game)
-     @game.count = @game.count - 1
+     @game.update_attributes(:count => @game.count - 1)
      redirect_to games_url
   end
 
   # DELETE /games/1
   # DELETE /games/1.json
   def destroy
+    if current_user != @game.user
+      redirect_to games_path
+      flash[:notice] = "You don't own that"
+    end
     @game.destroy
     respond_to do |format|
       format.html { redirect_to games_url, notice: 'Game was successfully destroyed.' }

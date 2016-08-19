@@ -5,7 +5,7 @@
 	End:  <%= game.end_time.strftime("%I:%M %p %m/%d") %> <br />
 	<% if game.need_players %>
 	<p>
-	  <strong>Needs <%= pluralize(game.need_count, 'player') %>! </strong>
+	  <strong>Needs <%= pluralize(game.need_count - game.count, 'player') %>! </strong>
 	</p>
 	<% end %>
 	<% if user_signed_in? && current_user!=game.user && !game.attendees.map(&:id).include?(current_user.id) %>

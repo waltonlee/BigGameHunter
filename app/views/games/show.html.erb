@@ -24,6 +24,10 @@
     <% elsif user_signed_in? && current_user!=@game.user && @game.attendees.map(&:id).include?(current_user.id) %>
         <%= button_to 'leave game', leave_game_path(@game.id),:class => 'btn btn-primary btn-sm', :method => :delete %>
     <% end %>
+    <% if user_signed_in? && current_user==@game.user %>
+      <%= link_to 'Edit', edit_game_path(@game), :class => 'btn btn-primary btn-sm' %>
+      <%=  button_to 'Delete',@game,:class => 'btn btn-danger btn-sm submit bottom10', method: :delete, :onclick => "return confirm('Are you sure you want to delete this game?')" %>
+    <% end %>
   </aside>
 
 <p>
@@ -34,12 +38,12 @@
 <% if @game.need_players %>
 
 <p>
-  <strong>Needs <%= pluralize(@game.need_count, 'player') %>! </strong>
+  <strong>Needs <%= pluralize(@game.need_count - @game.count, 'player') %>! </strong>
 </p>
 
 <% end %>
 
-<p>
+<!-- <p>
   <strong>Latitude:</strong>
   <%= @game.latitude %>
 </p>
@@ -47,7 +51,7 @@
 <p>
   <strong>Longitude:</strong>
   <%= @game.longitude %>
-</p>
+</p> -->
 
 <p>
   <strong>Location Description:</strong><br>
@@ -59,17 +63,15 @@
 </div>
 
 <h2>Who's coming?</h2>
+<% if @attendees.any? %>
+      <ul class="users follow">
+        <%= render @attendees %>
+      </ul>
+      <%= will_paginate @attendees %>
+    <% end %>
 
-<ul>
-	<% @game.attendees.each do |attendee| %>
-	    <li>
-      <%= gravatar_for attendee, size: 50 %>
-      <%= link_to attendee.name, attendee %>
-    </li>
-	<% end %>
-</ul>
 
-<%= link_to 'Edit', edit_game_path(@game) %> |
+    
 <%= link_to 'Back', games_path %>
 
 </div>
