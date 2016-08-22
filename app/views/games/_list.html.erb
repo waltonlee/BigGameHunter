@@ -32,7 +32,7 @@
         <td><%= game.start_time.strftime("%m/%d %I:%M%p %Z") %></td>
         <td><%= game.end_time.strftime("%m/%d %I:%M%p %Z") %></td>
         <td>
-        <% if game.need_players || game.count >= game.need_count %>
+        <% if !game.need_players || game.count < game.need_count %>
           <span class="glyphicon glyphicon-ok">
         <% else %>
           <strong>Needs <%= pluralize(game.need_count - game.count, 'player') %>! </strong>
