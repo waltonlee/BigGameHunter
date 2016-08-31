@@ -1,5 +1,8 @@
 == README
 
+Ruby Version: 2.2.4p230 (2015-12-16 revision 53155)
+Rails Version: 4.2.6
+
 BGHmailer@gmail.com
 
 This README would normally document whatever steps are necessary to get the
