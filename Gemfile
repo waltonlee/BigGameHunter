@@ -38,7 +38,7 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 
 gem 'acts_as_follower'
 gem 'redis'
-gem 'resque'
+gem 'resque', "~> 1.22.0"
 gem 'resque_mailer'
 
 # Use ActiveModel has_secure_password
