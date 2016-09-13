@@ -3,7 +3,7 @@ class GamesController < ApplicationController
   skip_before_action :authenticate_user!, :only => [:index, :show]
   #before_action :authenticate_user!, :except => [:show, :index]
   before_action :set_game, only: [:show, :edit, :update, :destroy]
-  
+
 
   # GET /games
   # GET /games.json
@@ -21,7 +21,7 @@ class GamesController < ApplicationController
         else
           pin = "_pin_red.png"
         end
-          
+
         marker.infowindow render_to_string(:partial => "/games/infowindow", :locals => { :game => game})
         marker.lat game.latitude
         marker.lng game.longitude
@@ -62,7 +62,7 @@ class GamesController < ApplicationController
   # POST /games.json
   def create
     @game = Game.new(game_params)
-    @game.user_id = current_user.id 
+    @game.user_id = current_user.id
 
     respond_to do |format|
       if @game.save
@@ -83,7 +83,8 @@ class GamesController < ApplicationController
     users = User.where('id IN (?) OR id IN (?)', players, followers)
     users = users.where(receive: true)
     users.each do |user|
-      UserMailer.single_game_email(user, game, current_user).deliver_later #add resque?
+      #Resque.enqueue(Mailjob, user.id, game.id, current_user.id)
+      UserMailer.single_game_email(user.id, game.id, current_user.id).deliver
     end
   end
 

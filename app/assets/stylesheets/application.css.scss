@@ -116,7 +116,7 @@ $dropDown       : false;
 
 /* tab color */
 .nav-tabs>li>a {
-  background-color: $colDefault; 
+  background-color: $colDefault;
   border-color: $colDefault;
   color: #FFFFFF;
 }
@@ -170,50 +170,50 @@ $dropDown       : false;
   margin-bottom: 10px;
 }
 
-.btn-primary { 
-  color: #FFFFFF; 
-  background-color: #61559F; 
-  border-color: #61559F; 
-} 
- 
-.btn-primary:hover, 
-.btn-primary:focus, 
-.btn-primary:active, 
-.btn-primary.active, 
-.open .dropdown-toggle.btn-primary { 
-  color: #FFFFFF; 
-  background-color: #49247A; 
-  border-color: #61559F; 
-} 
- 
-.btn-primary:active, 
-.btn-primary.active, 
-.open .dropdown-toggle.btn-primary { 
-  background-image: none; 
-} 
- 
-.btn-primary.disabled, 
-.btn-primary[disabled], 
-fieldset[disabled] .btn-primary, 
-.btn-primary.disabled:hover, 
-.btn-primary[disabled]:hover, 
-fieldset[disabled] .btn-primary:hover, 
-.btn-primary.disabled:focus, 
-.btn-primary[disabled]:focus, 
-fieldset[disabled] .btn-primary:focus, 
-.btn-primary.disabled:active, 
-.btn-primary[disabled]:active, 
-fieldset[disabled] .btn-primary:active, 
-.btn-primary.disabled.active, 
-.btn-primary[disabled].active, 
-fieldset[disabled] .btn-primary.active { 
-  background-color: #61559F; 
-  border-color: #61559F; 
-} 
- 
-.btn-primary .badge { 
-  color: #61559F; 
-  background-color: #FFFFFF; 
+.btn-primary {
+  color: #FFFFFF;
+  background-color: #61559F;
+  border-color: #61559F;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary {
+  color: #FFFFFF;
+  background-color: #49247A;
+  border-color: #61559F;
+}
+
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary {
+  background-image: none;
+}
+
+.btn-primary.disabled,
+.btn-primary[disabled],
+fieldset[disabled] .btn-primary,
+.btn-primary.disabled:hover,
+.btn-primary[disabled]:hover,
+fieldset[disabled] .btn-primary:hover,
+.btn-primary.disabled:focus,
+.btn-primary[disabled]:focus,
+fieldset[disabled] .btn-primary:focus,
+.btn-primary.disabled:active,
+.btn-primary[disabled]:active,
+fieldset[disabled] .btn-primary:active,
+.btn-primary.disabled.active,
+.btn-primary[disabled].active,
+fieldset[disabled] .btn-primary.active {
+  background-color: #61559F;
+  border-color: #61559F;
+}
+
+.btn-primary .badge {
+  color: #61559F;
+  background-color: #FFFFFF;
 }
 
 /* typography */
@@ -263,7 +263,7 @@ p {
   line-height: 1.7em;
 }
 
-/* table */ 
+/* table */
 
 .table > tbody > tr > td {
      vertical-align: middle;
@@ -441,10 +441,7 @@ footer {
 }
 
 .legend {
-  border-radius: 5px;
-  border: 2px solid #333;
-  margin-top: 10px;
-  padding-top: 5px;
+  padding-top: 10px;
   padding-bottom: 5px;
 
   img{
