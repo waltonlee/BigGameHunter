@@ -3,6 +3,7 @@ Rails.application.configure do
 
   # Code is not reloaded between requests.
   ENV["REDISTOGO_URL"] = 'redis://redistogo:6e166f2627d875eb858af49037fa82da@viperfish.redistogo.com:11899/'
+  ENV["REDIS_URL"] = 'redis://redistogo:6e166f2627d875eb858af49037fa82da@viperfish.redistogo.com:11899/'
   config.cache_classes = true
 
   # Eager load code on boot. This eager loads most of Rails and
