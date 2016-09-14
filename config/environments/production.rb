@@ -2,6 +2,7 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
+  ENV["REDISTOGO_URL"] = 'redis://redistogo:50c726316702440b953078266d49d608@viperfish.redistogo.com:11866/'
   config.cache_classes = true
 
   # Eager load code on boot. This eager loads most of Rails and
@@ -27,7 +28,7 @@ Rails.application.configure do
   :port => 587,
   :authentication => 'plain',
   :enable_starttls_auto => true
-}
+  }
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
   # Add `rack-cache` to your Gemfile before enabling this.
