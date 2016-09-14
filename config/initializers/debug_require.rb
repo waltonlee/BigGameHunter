@@ -2,7 +2,7 @@ if ENV['DEBUG_REQUIRE']
   require 'benchmark'
 
   def require(file)
-    @@first ||= Time.now
+    @first ||= Time.now
     rc = false
     ts = Benchmark.measure do
       rc = super
