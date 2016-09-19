@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'static_pages/about', as: "about"
+
   resources :gametypes
   resources :games do
     member do

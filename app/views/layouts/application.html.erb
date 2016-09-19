@@ -5,6 +5,7 @@
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= favicon_link_tag 'favicon.ico' %>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 
@@ -15,7 +16,7 @@
 
   </head>
   <body>
-    <%= render 'layouts/header' %>  
+    <%= render 'layouts/header' %>
 
     <div class="container">
       <%= render 'layouts/messages' %>
