@@ -7,10 +7,12 @@
     <section class="stats">
       <%= render 'stats' %>
     </section>
+    <% if user_signed_in? %>
     <% if @user.followed_by?(current_user) %>
       <%= button_to 'unfollow!', unfollow_user_path(@user.id),:class => 'btn btn-secondary btn-sm', :method => :delete %>
     <% elsif @user != current_user %>
       <%= button_to 'follow!', follow_user_path(@user.id),:class => 'btn btn-secondary btn-sm', :method => :post %>
+    <% end %>
     <% end %>
 
   </aside>

@@ -15,8 +15,10 @@
         <td><%= gametype.name %></td>
         <td><%= image_tag(gametype.image, size: "50") %></td>
         <td><%= link_to 'Show', gametype %></td>
+        <%if user_signed_in? && current_user.admin?%>
         <td><%= link_to 'Edit', edit_gametype_path(gametype) %></td>
         <td><%= link_to 'Destroy', gametype, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +26,6 @@
 
 <br>
 
+<%if user_signed_in? && current_user.admin?%>
 <%= link_to 'New Gametype', new_gametype_path %>
+<% end %>
