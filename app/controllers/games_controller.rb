@@ -10,28 +10,33 @@ class GamesController < ApplicationController
   def index
     @games = Game.where("end_time >= ?", Time.now)
     @partial = params[:view] || "map"
-    if @partial == "map"
-      @hash = Gmaps4rails.build_markers(@games) do |game, marker|
-        if game.need_players && game.need_count > game.count
-          pin = "_pin_gray.png"
-        elsif game.start_time < Time.now
-          pin = "_pin_green.png"
-        elsif game.end_time < Time.now + 1.days
-          pin = "_pin_yellow.png"
-        else
-          pin = "_pin_red.png"
-        end
+    respond_to do |format|
+      format.html{
+      if @partial == "map"
+        @hash = Gmaps4rails.build_markers(@games) do |game, marker|
+          if game.need_players && game.need_count > game.count
+            pin = "_pin_gray.png"
+          elsif game.start_time < Time.now
+            pin = "_pin_green.png"
+          elsif game.end_time < Time.now + 1.days
+            pin = "_pin_yellow.png"
+          else
+            pin = "_pin_red.png"
+          end
 
-        marker.infowindow render_to_string(:partial => "/games/infowindow", :locals => { :game => game})
-        marker.lat game.latitude
-        marker.lng game.longitude
-        marker.title (game.name + " - " + game.gametype.name)
-        marker.picture({
-          :url => view_context.image_path(game.gametype.image + pin),
-          :width => 32,
-          :height => 56
-          })
+          marker.infowindow render_to_string(:partial => "/games/infowindow", :locals => { :game => game})
+          marker.lat game.latitude
+          marker.lng game.longitude
+          marker.title (game.name + " - " + game.gametype.name)
+          marker.picture({
+            :url => view_context.image_path(game.gametype.image + pin),
+            :width => 32,
+            :height => 56
+            })
+        end
       end
+      }
+      format.json{}
     end
   end
 
