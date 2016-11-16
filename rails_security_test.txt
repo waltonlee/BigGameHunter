@@ -1,0 +1,51 @@
+
++BRAKEMAN REPORT+
+
+Application path: /Users/waltonlee/Documents/BigGameHunter
+Rails version: 4.2.6
+Brakeman version: 3.4.0
+Started at 2016-11-01 15:34:24 -0400
+Duration: 0.597893 seconds
+Checks run: BasicAuth, BasicAuthTimingAttack, ContentTag, CreateWith, CrossSiteScripting, DefaultRoutes, Deserialize, DetailedExceptions, DigestDoS, DynamicFinders, EscapeFunction, Evaluation, Execute, FileAccess, FileDisclosure, FilterSkipping, ForgerySetting, HeaderDoS, I18nXSS, JRubyXML, JSONEncoding, JSONParsing, LinkTo, LinkToHref, MailTo, MassAssignment, MimeTypeDoS, ModelAttrAccessible, ModelAttributes, ModelSerialize, NestedAttributes, NestedAttributesBypass, NumberToCurrency, QuoteTableName, Redirect, RegexDoS, Render, RenderDoS, RenderInline, ResponseSplitting, RouteDoS, SQL, SQLCVEs, SSLVerify, SafeBufferManipulation, SanitizeMethods, SelectTag, SelectVulnerability, Send, SendFile, SessionManipulation, SessionSettings, SimpleFormat, SingleQuotes, SkipBeforeFilter, StripTags, SymbolDoSCVE, TranslateBug, UnsafeReflection, ValidationRegex, WithoutProtection, XMLDoS, YAMLParsing
+
+
++SUMMARY+
+
++-------------------+-------+
+| Scanned/Reported  | Total |
++-------------------+-------+
+| Controllers       | 6     |
+| Models            | 4     |
+| Templates         | 40    |
+| Errors            | 0     |
+| Security Warnings | 5 (1) |
++-------------------+-------+
+
++----------------------+-------+
+| Warning Type         | Total |
++----------------------+-------+
+| Cross Site Scripting | 1     |
+| Dynamic Render Path  | 3     |
+| SQL Injection        | 1     |
++----------------------+-------+
+
+
++SECURITY WARNINGS+
+
++------------+-------+--------+----------------------+-----------------------------------------------------------------------------------------------------------------------------+
+| Confidence | Class | Method | Warning Type         | Message                                                                                                                     |
++------------+-------+--------+----------------------+-----------------------------------------------------------------------------------------------------------------------------+
+| High       |       |        | SQL Injection        | Rails 4.2.6 contains a SQL injection vulnerability (CVE-2016-6317). Upgrade to 4.2.7.1 near line 114                        |
+| Medium     |       |        | Cross Site Scripting | Rails 4.2.6 content_tag does not escape double quotes in attribute values (CVE-2016-6316). Upgrade to 4.2.7.1 near line 114 |
++------------+-------+--------+----------------------+-----------------------------------------------------------------------------------------------------------------------------+
+
+View Warnings:
+
++------------+-----------------------------------------------+---------------------+---------------------------------------------------------------------------------------------->>
+| Confidence | Template                                      | Warning Type        | Message                                                                                      >>
++------------+-----------------------------------------------+---------------------+---------------------------------------------------------------------------------------------->>
+| Weak       | users/show (UsersController#show)             | Dynamic Render Path | Render path contains parameter value near line 35: render(action => @user.games.where("end_ti>>
+| Weak       | users/show (UsersController#show)             | Dynamic Render Path | Render path contains parameter value near line 45: render(action => @user.attended_events.whe>>
+| Weak       | users/show_follow (UsersController#followers) | Dynamic Render Path | Render path contains parameter value near line 23: render(action => User.find(params[:id]).us>>
++------------+-----------------------------------------------+---------------------+---------------------------------------------------------------------------------------------->>
+
