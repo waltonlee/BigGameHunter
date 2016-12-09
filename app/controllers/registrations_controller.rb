@@ -11,13 +11,13 @@ class RegistrationsController < Devise::RegistrationsController
       sign_in resource
       render :status => 200,
            :json => { :success => true,
-                      :info => "Registered",
+                      :info => { :message => "Signed in"},
                       :data => { :user => resource,
                                  :auth_token => current_user.authentication_token } }
     else
       render :status => :unprocessable_entity,
              :json => { :success => false,
-                        :info => resource.errors,
+                        :info => { :message => "Sign in failed"},
                         :data => {} }
     end
   end
