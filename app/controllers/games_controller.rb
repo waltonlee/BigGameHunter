@@ -1,6 +1,7 @@
 class GamesController < ApplicationController
 
   skip_before_action :authenticate_user!, :only => [:index, :show]
+  #skip_before_action :verify_authenticity_token, :only => [:create] #dangerous
   #before_action :authenticate_user!, :except => [:show, :index]
   before_action :set_game, only: [:show, :edit, :update, :destroy]
 
@@ -67,7 +68,7 @@ class GamesController < ApplicationController
   # POST /games.json
   def create
     @game = Game.new(game_params)
-    @game.user_id = current_user.id
+    @game.user_id ||= current_user.id
 
     respond_to do |format|
       if @game.save
