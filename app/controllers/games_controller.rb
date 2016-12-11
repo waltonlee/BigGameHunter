@@ -68,12 +68,27 @@ class GamesController < ApplicationController
   # POST /games.json
   def create
     @game = Game.new(game_params)
+    #gamename = params.permit(:gamename)
+    #if gametype_id is missing, search for name.
+    p "gotem"
+    p @game.gamename
+    if (@game.gametype_id == 0)
+      p "wah"
+      p @game.gamename
+      if Gametype.exists?(name: @game.gamename)
+        p "aylmao"
+        temp = Gametype.where(name: @game.gamename).first
+        @game.gametype_id = temp.id
+      end
+    end
+
+
     @game.user_id ||= current_user.id
 
     respond_to do |format|
       if @game.save
         #UserMailer.example_email(current_user).deliver
-        game_added_email(@game, current_user)
+        #game_added_email(@game, current_user)
         format.html { redirect_to @game, notice: 'Game was successfully created.' }
         format.json { render :show, status: :created, location: @game }
       else
@@ -146,6 +161,6 @@ class GamesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
-      params.require(:game).permit(:name,:description , :start_time, :end_time, :user_id, :gametype_id, :need_players, :need_count, :latitude, :longitude)
+      params.require(:game).permit(:name,:description , :start_time, :end_time, :user_id, :gametype_id, :need_players, :need_count, :latitude, :longitude, :gamename)
     end
 end

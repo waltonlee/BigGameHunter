@@ -1,4 +1,5 @@
 class Game < ActiveRecord::Base
+  attr_accessor :gamename
   belongs_to :user #owner don't get confused
   belongs_to :gametype
   has_and_belongs_to_many :attendees, class_name: 'User'
